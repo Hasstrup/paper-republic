@@ -3,7 +3,7 @@ var Router = express.Router();
 var Post = require('../models/post')
 var Collection = require('../models/collection')
 
-Router.get('/', function(req, res){
+Router.get('/post', function(req, res){
   Post.find({}, function(err, posts){
     if(err){
       console.log('there is an error here' + err)

@@ -9,15 +9,19 @@ Router.get('/collections', function(req, res){
     if(err){
       console.log(err)
     } else {
-      var postarray = [];
-      collections.posts.forEach(function(post){
-        Post.findById(post.id, function(err, post){
-          if(err){
-            console.log(err)
-          } else {
-              postarray.push(post)
-          }})})
-      res.json({ collections:collections, postarray:postarray})
+        var postarray = [];
+        if(collections.posts !== undefined) {
+        collections.posts.forEach(function(post){
+          Post.findById(post.id, function(err, post){
+            if(err){
+              console.log(err)
+            } else {
+                postarray.push(post)
+            }})})
+        res.json({ collections:collections, postarray:postarray})
+      } else {
+        res.json({collections:collections})
+      }
     }})})
 
 
@@ -27,15 +31,19 @@ Collection.findById(req.params.id, function(err, collections){
         console.log(err)
         } else {
         var postarray = [];
-        collections.posts.forEach(function(post){
-        Post.findById(post.id, function(err, post){
-        if(err){
-                console.log(err)
-              } else {
-                  postarray.push(post)
-              }})})
-          res.json({ collections:collections, postarray:postarray})
-        }})})
+        if(collections.posts !== undefined){
+          collections.posts.forEach(function(post){
+          Post.findById(post.id, function(err, post){
+          if(err){
+                  console.log(err)
+                } else {
+                    postarray.push(post)
+                }})})
+            res.json({ collections:collections, postarray:postarray})
+
+        } else {
+          res.json({collections:collections})
+        }}})})
 
 
 Router.get('/collections/new', function(req, res){
