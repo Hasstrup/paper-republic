@@ -20,7 +20,7 @@ class ShowCollection extends Component {
   render() {
 
     let displaying_content;
-
+    //this determines the right time to display posts incase there is an empty array coming from the db
     if(this.state.collection_posts !== undefined ){
      displaying_content =this.state.collection_posts.map(post => {
       return (
@@ -33,16 +33,15 @@ class ShowCollection extends Component {
           <h4> Seems like we need some content here </h4>
         )}
 
-
   return (
+
     <div>
       <div>
         <h3> {this.state.collection.name} </h3>
-        <h6> {this.state.collection.posts.count} posts</h6>
+        <h6> {this.state.collection.posts ? this.state.collection.posts.count : 'null'} posts</h6>
         <a> Delete Collection </a>
         <a> edit collection </a>
       </div>
-      
       <hr/>
       <div className='row'>
         {displaying_content}

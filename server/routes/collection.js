@@ -42,35 +42,56 @@ Collection.findById(req.params.id, function(err, collections){
             res.json({ collections:collections, postarray:postarray})
 
         } else {
-          res.json({collections:collections})
+          res.json({collections:collections, postarray:postarray})
         }}})})
 
 
 Router.get('/collections/new', function(req, res){
-  Posts.find({}, function(err, posts){
+  //creating a new collection will only allow you attach uncategorized posts
+  Collection.find({name: 'Uncategorized'}, function(err, collection){
     if(err){
       console.log(err)
     } else {
-      res.json({posts:posts})
+      if(collection !== null && collection.posts.length !== 0){
+        var renderedposts = []
+        collection.posts.forEach(function(post){
+          Posts.find(post.id,function(err, posts){
+            if(err){
+              console.log(err)
+            } else {
+              renderedposts.push(posts)
+            }})
+        })
+        res.json({posts:renderedposts})
+      } else {
+        res.json({posts:renderedposts})
+      }
     }})})
 
 
 Router.post('/collections', function(req, res){
+  var newcollection = {name: req.body.name}
   Collection.create(newcollection, function(err, collection){
     if(err){
       console.log(err)
     } else {
-      if(req.body.posts == true) {
+      if(req.body.posts == true && req.body.posts.length !== 0) {
         req.body.posts.forEach(function (post){
           Post.findById(post, function(err, post){
             if(err) {
               console.log(err)
             } else {
               post.collectionn.id = collection._id
+              post.collectionn.name = collection.name
               collection.posts.push(post)
-              post.save
+              post.save()
               collection.save();
-            }})})}}})})
+            }})})
+            res.json({})
+          }
+            else {
+              res.json({})
+            }}})})
 
 
 Router.get('/collections/:id/edit', function(req, res){
@@ -87,14 +108,19 @@ Router.put('/collections/:id/edit', function(req, res){
     if(err) {
       console.log(err)
     } else {
-      if(collection.posts == true) {
+      if(collection.posts.length !== 0) {
         collection.posts.forEach(function(post){
           Posts.findById(post.id, function(err, post){
             if(err){
               console.log(err)
             } else {
               post.collectionn.name = collection.name
-              post.save
+              post.collectionn.id = collection._id
+              post.save()
+              if (collection.posts.indexOf(post) === -1){
+                collection.posts.push(post)
+                collection.save()
+              } else { return null }
             }})})
             res.json({})}
       else {
@@ -106,7 +132,7 @@ Router.delete('/collections/:id', function(req, res){
       if(err) {
         console.log(err)
       } else {
-        if(i_collection.posts == true) {
+        if(i_collection.posts == true && i_collection.posts.length !== 0 ) {
           i_collection.posts.forEach(function (post) {
           Post.findById(post.id, function(err, post){
           post.collectionn.name = 'General'

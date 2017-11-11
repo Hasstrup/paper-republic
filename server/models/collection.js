@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var collectionSchema = new mongoose.Schema ({
-  posts: [{ type: mongoose.Schema.Types.ObjectId,  ref: 'Post'}],
+  posts: [{ id:{ type: mongoose.Schema.Types.ObjectId,  ref: 'Post'}}],
   name: String
 })
 

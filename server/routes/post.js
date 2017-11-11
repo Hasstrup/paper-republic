@@ -36,10 +36,11 @@ Router.post('/post', function(req, res){
     if(err) {
       console.log(err)
     } else {
-      newpost.creator.name = req.body.creatorname
-      newpost.creator.link = req.body.creatorlink
-      newpost.save();
-      if(req.body.collection == true){
+      post.creator.name = req.body.creatorname
+      post.creator.link = req.body.creatorlink
+      post.save();
+      //when you create a post with no collection, it gives it the collection 'Uncategorized' by default
+      if(req.body.collection !== ''){
         Collection.findById(req.body.collection, function(err, collection){
           if(err){
             console.log(err)
@@ -52,9 +53,49 @@ Router.post('/post', function(req, res){
             res.json({status: 200})
           }
         })}
+
         else {
-        res.json({})
-      }}})})
+          Collection.find({name: 'Uncategorized'}, function(err, collection){
+            if(err) {
+              console.log(err)
+            } else {
+              post.collectionn.name = collection.name
+              post.collectionn.id = collection._id
+              post.save();
+              collection.posts.push(post)
+              collection.save()
+              res.json({})
+            }
+          })}}})})
+
+
+Router.get('/post/:id/edit', function(req, res){
+  Post.findById(req.params.id, function(err, post){
+  if(err) {
+          console.log('problem fetching the post' + err)
+          } else {
+            Collection.find({}, function(err, collections){
+              if(err) {
+                console.log(err)
+              } else {
+                  res.json({post:post, collections:collections})
+}})}})})
+
+
+//I'm editing the edit route to allow us only change the collection of the post
+Router.put('/post/:id', function(req, res){
+  Post.findById(req.params.id, function(err, post) {
+    if(err) {
+      console.log(err)
+    } else {
+      Collection.findById(req.body.collection, function(err, collection){
+         post.collectionn.name = collection.name
+         post.collection.name = collection._id
+         post.save()
+         collection.posts.push(post)
+         collection.save()
+         res.json()
+})}})})
 
 
 Router.delete('/post/:id', function(req, res){
@@ -71,6 +112,6 @@ Router.delete('/post/:id', function(req, res){
           collection.save()
           post.remove();
           res.json({})
-        }})}})})
+}})}})})
 
 module.exports = Router;

@@ -5,8 +5,7 @@ class viewCollections extends Component {
     super()
     this.state = {
       collections = [],
-    }
-  }
+    }}
 
   componentDidMount(){
     axios.get('http://localhost/4400/collections')
@@ -17,7 +16,7 @@ class viewCollections extends Component {
       console.log(err)
     })}
 
-handleClick = (id) => { 
+handleClick = (id) => {
   this.props.history.push(`/collections/${id}`)
 }
 
@@ -25,7 +24,7 @@ render() {
     var collections = this.state.collections.map(collection => {
       return (
         <div className='col-md-3'>
-      <div class="card" style="width: 20rem;" onClick={() => this.handleClick(collection._id)}>
+      <div class="card" style="width: 15rem;" onClick={() => this.handleClick(collection._id)}>
         <div class="card-body">
           <h4 class="card-text"> {collection.name} </h4>
         </div>
