@@ -98,12 +98,12 @@ Router.delete('/collections/:id', function(req, res){
       if(err) {
         console.log(err)
       } else {
-        if(i_collection == true) {
+        if(i_collection.posts == true) {
           i_collection.posts.forEach(function (post) {
           Post.findById(post.id, function(err, post){
-          post.collectionn.name = 'uncategorized'
+          post.collectionn.name = 'General'
           post.save();
-          Collection.find({name: 'uncategorized'}, function(err, ucollection){
+          Collection.find({name: 'General'}, function(err, ucollection){
           ucollection.posts.push(post)
           ucollection.save();
         })})})
@@ -114,4 +114,4 @@ Router.delete('/collections/:id', function(req, res){
           res.json({})
         }}})})
 
-        module.exports = Router; 
+        module.exports = Router;
