@@ -4,7 +4,9 @@ class NewCollectionForm extends Component {
    constructor(props){
      super(props)
      this.state = {
-       posts: []
+       posts: [],
+       selectedposts: [],
+       selectedimages: []
      }
    }
 
@@ -19,7 +21,6 @@ componentDidMount(){
 handleClick = (id, link) => {
   var postselected = []
   var imagelinks = []
-
   var index1 = postselected.indexOf(id)
   var index2 = imagelinks.indexOf(link)
 
@@ -34,6 +35,18 @@ handleClick = (id, link) => {
   }}
 
 
+handleSubmit = () => {
+  var newcollection = { name: this.refs.name.value, posts: this.state.selectedposts }
+  axios.request({
+    method: 'POST',
+    url: 'http://localhost/4400/collections',
+    data: newcollection
+  }).then(response => {
+    this.props.history.push('/collections')
+  })
+}
+
+
 render() {
   let postgrid;
   let selectedposts
@@ -45,7 +58,7 @@ render() {
             <img clasName='img-fluid img-thumbnail' onClick={() => this.handleClick(post._id, post.link)} src={post.link}/>
           </div>
       )
-      selectedposts = this.state.selected_posts.map(link => {
+      selectedposts = this.state.selectedimages.map(link => {
         return(
           <div className='col-md-2'>
             <img clasName='img-fluid img-thumbnail' src={link}/>
@@ -89,6 +102,6 @@ render() {
       </div>
     )
 
-}
+}}
 
-}
+export default NewCollectionForm ;

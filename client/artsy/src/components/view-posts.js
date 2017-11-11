@@ -4,8 +4,9 @@ import axios from 'axios'
 class ViewPost extends Component {
     construtor(props){
       super(props);
+      this.state = {
       content: []
-    }
+      }}
 
  componentDidMount() {
   axios.get('http://localhost/4400/posts')
@@ -33,3 +34,5 @@ render() {
               </div>
             </grid>
 )}}
+
+export default ViewPost;

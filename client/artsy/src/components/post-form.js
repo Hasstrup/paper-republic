@@ -83,3 +83,5 @@ else
       </div>
   )
 }}
+
+export default NewPost; 

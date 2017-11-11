@@ -28,8 +28,8 @@ render() {
         <div class="card-body">
           <h4 class="card-text"> {collection.name} </h4>
         </div>
+        </div>
       </div>
-    </div>
     )})
 
   return (
@@ -38,5 +38,6 @@ render() {
     </div>
   )
 }
+ }
 
-}
+export default viewCollections;

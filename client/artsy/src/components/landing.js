@@ -8,6 +8,12 @@ class Landing extends Component {
    render () {
      return(
        <div>
+         <div className='row'>
+           <div className='col-md-12'>
+             <h5> Hey Man , what would you like to do ? </h5>
+           </div>
+
+         </div>
          <ul>
            <li> <a href='/posts/new'> Add Post </a> </li>
            <li> <a href='/posts'> View Posts </a> </li>
@@ -18,3 +24,5 @@ class Landing extends Component {
      )
    }
 }
+
+export default Landing; 

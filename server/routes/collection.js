@@ -103,7 +103,7 @@ Router.get('/collections/:id/edit', function(req, res){
     }})})
 
 
-Router.put('/collections/:id/edit', function(req, res){
+Router.put('/collections/:id', function(req, res){
   Collection.findByIdAndUpdate(req.params.id, {$set: {name: req.body.name}}, function(err, collection){
     if(err) {
       console.log(err)

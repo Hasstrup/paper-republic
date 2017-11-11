@@ -21,7 +21,7 @@ class ShowCollection extends Component {
 
     let displaying_content;
     //this determines the right time to display posts incase there is an empty array coming from the db
-    if(this.state.collection_posts !== undefined ){
+    if(this.state.collection_posts.length !== 0 ){
      displaying_content =this.state.collection_posts.map(post => {
       return (
         <div className='col-md-4'>
@@ -30,7 +30,7 @@ class ShowCollection extends Component {
       )})}
       else {
         displaying_content = return (
-          <h4> Seems like we need some content here </h4>
+          <h4> Seems like we need to add some posts here </h4>
         )}
 
   return (
@@ -51,3 +51,5 @@ class ShowCollection extends Component {
 
 
 }}
+
+export default ShowCollection; 

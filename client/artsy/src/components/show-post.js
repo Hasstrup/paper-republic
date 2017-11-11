@@ -41,3 +41,5 @@ render() {
 }
 
 }
+
+export default ShowPost ; 
