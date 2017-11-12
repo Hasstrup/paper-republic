@@ -5,13 +5,13 @@ class ShowCollection extends Component {
   constructor(props){
     super(props)
     this.state = {
-      id: this.props.match.params.id
-      collection: {}
+      id: this.props.match.params.id,
+      collection: {},
       collection_posts: []
     }}
 
   componentDidMount() {
-    axios.get(`http://localhost/4400/collections/${this.state.id}`)
+    axios.get(`http://localhost:4400/collections/${this.state.id}`)
     .then( response => {
      this.setState({
      collection: response.data.collections, collection_posts: response.data.postarray
@@ -29,7 +29,7 @@ class ShowCollection extends Component {
           </div>
       )})}
       else {
-        displaying_content = return (
+        displaying_content =  (
           <h4> Seems like we need to add some posts here </h4>
         )}
 
@@ -52,4 +52,4 @@ class ShowCollection extends Component {
 
 }}
 
-export default ShowCollection; 
+export default ShowCollection;

@@ -3,7 +3,7 @@ var Router = express.Router();
 var Post = require('../models/post')
 var Collection = require('../models/collection')
 
-Router.get('/post', function(req, res){
+Router.get('/posts', function(req, res){
   Post.find({}, function(err, posts){
     if(err){
       console.log('there is an error here' + err)
@@ -11,6 +11,13 @@ Router.get('/post', function(req, res){
       res.json({posts:posts})
     }})})
 
+Router.get('/post/new', function(req, res){
+      Collection.find({}, function(err, collections){ //doing this so that you can assign it a collection on creation
+        if(err) {
+          console.log('oops another error here' + err)
+        } else {
+          res.json({collections: collections})
+    }})})
 
 Router.get('/post/:id', function(req, res){
   Post.findById(req.params.id, function(err, post){
@@ -19,15 +26,6 @@ Router.get('/post/:id', function(req, res){
     } else {
       res.json({post:post})
     }})})
-
-
-Router.get('/post/new', function(req, res){
-  Collection.find({}, function(err, collections){ //doing this so that you can assign it a collection on creation
-    if(err) {
-      console.log('oops another error here' + err)
-    } else {
-      res.json({collections: collections})
-}})})
 
 
 Router.post('/post', function(req, res){
@@ -55,7 +53,7 @@ Router.post('/post', function(req, res){
         })}
 
         else {
-          Collection.find({name: 'Uncategorized'}, function(err, collection){
+          Collection.findOne({'name': "Uncategorized"}, function(err, collection){
             if(err) {
               console.log(err)
             } else {

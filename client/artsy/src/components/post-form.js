@@ -5,13 +5,13 @@ class NewPost extends Component {
   constructor(props){
     super(props)
     this.state = {
-      collections = [],
-      selectedoption = '',
-      selected_name = ''
+      collections:[],
+      selectedoption: '',
+      selected_name: ''
     }}
 
 componentDidMount() {
-      axios.get('http://localhost/4400/post/new')
+      axios.get('http://localhost:4400/post/new')
       .then(response => {
         this.setState({ collections: response.data.collections})
       })}
@@ -19,7 +19,8 @@ componentDidMount() {
 handleClick = (id, name) => {
       this.setState({ selectedoption: id, selected_name: name })}
 
-handleSubmit = () => {
+
+handleSubmit = (e) => {
       e.preventDefault();
 
   const  content = {
@@ -29,23 +30,24 @@ handleSubmit = () => {
         collection: this.state.selectedoption
       }
   axios.request({
-    method: 'POST',
-    url: 'http://localhost/4400/post/new',
+    method: 'post',
+    url: 'http://localhost:4400/post',
     data: content
   }).then(response => {
     this.props.history.push('/posts')})
     .catch(err => {
       console.log(err)
-  })}
+    })
+}
 
   render() {
     let collectiongrid;
-    if(this.state.collections == true && this.state.collections.length !== 0)
+    if(this.state.collections.length !== 0)
       {
         collectiongrid = this.state.collections.map(collection => {
           return (
              <div className='col-md-6'>
-               <div class="card" style="width: 15rem;" onClick={() => this.handleClick(collection._id, collection.name)}>
+               <div class="card" style={{width: 15 + 'rem'}} onClick={() => this.handleClick(collection._id, collection.name)}>
                  <div class="card-body">
                    <h4 class="card-text"> {collection.name} </h4>
                  </div>
@@ -56,17 +58,20 @@ handleSubmit = () => {
 
 else
         {
-          collectiongrid = return (<h6> Oops! No item to display here </h6>)
+          collectiongrid =  (<h6> Oops! No item to display here </h6>)
         }
 
-     var form = return (
+     var form = (
+       <div>
         <form onSubmit={() => this.handleSubmit}>
           <input placeholder='Post link' ref='link'/>
           <input placeholder=" Creator's name " ref='creatorname'/>
           <input placeholder=" Creator's link " ref='creatorlink'/>
-          <label> Collection </label>
-          <h6>  {this.state.selected_name}   </h6>
-        </form> )
+        </form>
+        <button onClick={this.handleSubmit.bind(this)}> Save </button>
+        <label> Collection </label>
+        <h6>  {this.state.selected_name}   </h6>
+        </div> )
 
   return (
       <div>
@@ -84,4 +89,4 @@ else
   )
 }}
 
-export default NewPost; 
+export default NewPost;

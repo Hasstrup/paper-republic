@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 class viewCollections extends Component {
   constructor(){
     super()
     this.state = {
-      collections = [],
+      collections: [],
     }}
 
   componentDidMount(){
-    axios.get('http://localhost/4400/collections')
+    axios.get('http://localhost:4400/collections')
     .then(response => {
       this.setState({ collections: response.data.collections})
     })

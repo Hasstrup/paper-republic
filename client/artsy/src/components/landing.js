@@ -15,9 +15,9 @@ class Landing extends Component {
 
          </div>
          <ul>
-           <li> <a href='/posts/new'> Add Post </a> </li>
+           <li> <a href='/newposts'> Add Post </a> </li>
            <li> <a href='/posts'> View Posts </a> </li>
-           <li> <a href='/collections/new'> Add Collection </a> </li>
+           <li> <a href='/newcollections'> Add Collection </a> </li>
            <li> <a href='/collections'> View Collections </a> </li>
          </ul>
        </div>
@@ -25,4 +25,4 @@ class Landing extends Component {
    }
 }
 
-export default Landing; 
+export default Landing;

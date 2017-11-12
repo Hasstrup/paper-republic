@@ -11,7 +11,7 @@ class CollectionEditForm extends Component {
     }}
 
 componentDidMount(){
-  axios.get(`http://localhost/4400/collections/${this.state.id}`)
+  axios.get(`http://localhost:4400/collections/${this.state.id}`)
   .then(response => {
     this.setState({ collection: response.data.collection})
   })
@@ -26,7 +26,7 @@ handleSubmit = (e) => {
   e.preventDefault();
   axios.request({
     method: 'PUT',
-    url: `http://localhost/4400/collections/${this.state.id}`,
+    url: `http://localhost:4400/collections/${this.state.id}`,
     data: {name: this.state.value}
   }).then(response => {
     this.props.history.push('/collections')
@@ -47,4 +47,4 @@ render() {
 
 }
 
-export default CollectionEditForm; 
+export default CollectionEditForm;

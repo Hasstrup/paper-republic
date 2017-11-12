@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 class NewCollectionForm extends Component {
    constructor(props){
@@ -11,7 +12,7 @@ class NewCollectionForm extends Component {
    }
 
 componentDidMount(){
-     axios.get('http://localhost/4400/collections/new')
+     axios.get('http://localhost:4400/collections/new')
      .then(response => {
        this.setState({ posts: response.data.renderedposts })
      })}
@@ -39,7 +40,7 @@ handleSubmit = () => {
   var newcollection = { name: this.refs.name.value, posts: this.state.selectedposts }
   axios.request({
     method: 'POST',
-    url: 'http://localhost/4400/collections',
+    url: 'http://localhost:4400/collections',
     data: newcollection
   }).then(response => {
     this.props.history.push('/collections')
@@ -67,7 +68,7 @@ render() {
 
     })
     } else {
-      postgrid = return (<h5> Hey Man, There are currently no uncategorized posts,
+      postgrid =  (<h5> Hey Man, There are currently no uncategorized posts,
          <br/> but you can still create one and push posts later </h5>)
       selectedposts = null;
     }
@@ -79,6 +80,7 @@ render() {
           <form>
             <label> Collection Name </label>
             <input type='text' ref='name' />
+            <input type='submit'/>
           </form>
         </div>
 
