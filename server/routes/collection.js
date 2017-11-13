@@ -89,7 +89,7 @@ Router.post('/collection', function(req, res){
                   console.log(err)
                 } else {
                   index = oldcollection.posts.indexOf(post._id)
-                  oldcollection.posts.splice(index, 1)
+                  oldcollection.posts.pull({_id: post._id})
                   oldcollection.save()
                   post.collectionn.id = collection._id
                   post.collectionn.name = collection.name

@@ -24,20 +24,39 @@ handleClick = (id) => {
 
 render() {
     var collections = this.state.collections.map(collection => {
+
+      if(collection.posts.length > 0) {
+      var random = collection.posts[Math.floor(Math.random()*collection.posts.length)]
+      var display_photo = this.state.posts.find(post => post._id === random._id)
       return (
-        <div className='col-md-3'>
-      <div class="card" style={{'width': 12 + 'rem'}} id='home-photos' onClick={() => this.handleClick(collection._id)}>
-        <div class="card-body">
-          <h4 class="card-text"> {collection.name} </h4>
-        </div>
-        </div>
+        <div className='col-md-3' >
+            <div id='overlay' onClick={() => this.handleClick(collection._id)}></div>
+            <img src={display_photo.link}  id='some-image'/>
+            <div className='centered'>
+              <h3> {collection.name} </h3>
+              </div>
       </div>
-    )})
+    )}
+    else {
+      return(
+        <div className='col-md-3' id='coll'>
+            <div id='overlay' onClick={() => this.handleClick(collection._id)}></div>
+            <img src='https://78.media.tumblr.com/dc2f83f9aa754058be480bf3114c38a5/tumblr_o4p4kuIqkY1qf2dg2o1_500.gif'  id='some-image'/>
+            <div className='centered'>
+              <h3> {collection.name} </h3>
+              </div>
+      </div>
+  )}})
 
   return (
+    <div>
+    <div id='collection-grid'>
+      <h1 id='displayed-text'>  Collection </h1>
+      </div>
     <div className='row' id='collections-grid'>
       {collections}
     </div>
+  </div>
   )
 }
  }
