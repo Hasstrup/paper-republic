@@ -51,7 +51,6 @@ Router.post('/post', function(req, res){
             res.json({status: 200})
           }
         })}
-
         else {
           Collection.findOne({'name': "Uncategorized"}, function(err, collection){
             if(err) {
@@ -86,14 +85,27 @@ Router.put('/post/:id', function(req, res){
     if(err) {
       console.log(err)
     } else {
-      Collection.findById(req.body.collection, function(err, collection){
-         post.collectionn.name = collection.name
-         post.collection.name = collection._id
-         post.save()
-         collection.posts.push(post)
-         collection.save()
-         res.json()
-})}})})
+      Collection.findById(post.collectionn.id, function(err, oldcollection){
+        if(err){
+          console.log(err)
+        } else {
+            var index = oldcollection.posts.indexOf(post._id)
+            oldcollection.posts.pull({_id: post._id})
+            console.log('popped it off')
+            oldcollection.save();
+            Collection.findById(req.body.collection, function(err, collection){
+              if(err) {
+                console.log(err)
+              } else {
+                console.log('found it')
+             post.collectionn.name = collection.name
+             post.collection.name = collection._id
+             post.save()
+             collection.posts.push(post)
+             collection.save()
+             console.log('changed it')
+             res.json()
+        }})}})}})})
 
 
 Router.delete('/post/:id', function(req, res){
@@ -101,15 +113,15 @@ Router.delete('/post/:id', function(req, res){
     if(err){
       console.log(err)
     } else {
-      Collection.findById(post.collectionn.id, function(err, collection){
+      Collection.findById(post.collectionn.id,  function(err, collection){
         if(err){
           console.log(err)
         } else {
-          var index = collection.indexOf(post)
-          collection.splice(index, 1)
-          collection.save()
-          post.remove();
-          res.json({})
-}})}})})
+            collection.posts.pull({_id: post._id})
+              collection.save()
+              console.log('removing')
+              post.remove();
+              res.json({})
+          }})}})})
 
 module.exports = Router;

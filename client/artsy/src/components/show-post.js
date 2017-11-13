@@ -19,13 +19,24 @@ class ShowPost extends Component {
        })})
   }
 
+  handleEdit = () => {
+    this.props.history.push(`/editposts/${this.state.id}`)
+  }
+
+  handleDelete = () => {
+    axios.delete(`http://localhost:4400/post/${this.state.id}`)
+    .then(response => {
+      this.props.history.push(`/collections/${this.state.collection.id}`)
+    })
+  }
+
 render() {
   return(
     <div>
       <hr/>
      <div className='row'>
       <div className='col md-8'>
-        <img clasName='img-fluid img-thumbnail' src={this.state.content.link}/>
+        <img className='img-fluid img-thumbnail' src={this.state.content.link}/>
       </div>
 
       <div className='col md-4'>
@@ -35,8 +46,8 @@ render() {
         <li class="list-group-item"> {this.state.creator.name}</li>
           <li class="list-group-item"> <strong> Category </strong></li>
           <li class="list-group-item"> {this.state.collection.name}</li>
-        <li class="list-group-item"> Delete </li>
-        <li class="list-group-item"> Change Collection </li>
+        <li class="list-group-item" onClick={this.handleDelete}> Delete </li>
+        <li class="list-group-item" onClick={() => this.handleEdit(this.state.id)}> Change Collection </li>
       </ul>
      </div>
       </div>

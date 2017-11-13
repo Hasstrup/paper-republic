@@ -6,12 +6,13 @@ class viewCollections extends Component {
     super()
     this.state = {
       collections: [],
+      posts: []
     }}
 
   componentDidMount(){
     axios.get('http://localhost:4400/collections')
     .then(response => {
-      this.setState({ collections: response.data.collections})
+      this.setState({ collections: response.data.collections, posts: response.data.postarray })
     })
     .catch(err => {
       console.log(err)
@@ -25,7 +26,7 @@ render() {
     var collections = this.state.collections.map(collection => {
       return (
         <div className='col-md-3'>
-      <div class="card" style="width: 15rem;" onClick={() => this.handleClick(collection._id)}>
+      <div class="card" style={{'width': 12 + 'rem'}} onClick={() => this.handleClick(collection._id)}>
         <div class="card-body">
           <h4 class="card-text"> {collection.name} </h4>
         </div>

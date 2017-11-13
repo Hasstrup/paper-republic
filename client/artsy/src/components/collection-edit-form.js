@@ -11,22 +11,23 @@ class CollectionEditForm extends Component {
     }}
 
 componentDidMount(){
-  axios.get(`http://localhost:4400/collections/${this.state.id}`)
+  axios.get(`http://localhost:4400/collection/${this.state.id}/edit`)
   .then(response => {
     this.setState({ collection: response.data.collection})
   })
 }
 
-handleChange = (e) => {
-  e.preventDefault();
-  this.setState({ value: e.target.value })
+handleChange = (event) => {
+  this.setState({ value: this.refs.name.value })
 }
 
-handleSubmit = (e) => {
-  e.preventDefault();
+handleSave = (e) => {
+  if(this.state.value === ''){
+    this.setState({value: this.state.collection.name})
+  } else {}
   axios.request({
-    method: 'PUT',
-    url: `http://localhost:4400/collections/${this.state.id}`,
+    method: 'put',
+    url: `http://localhost:4400/collection/${this.state.id}`,
     data: {name: this.state.value}
   }).then(response => {
     this.props.history.push('/collections')
@@ -38,9 +39,9 @@ render() {
       <div>
         <h5> Edit {this.state.collection.name}</h5>
         <form onSubmit={() => this.handleSubmit}>
-          <input type='text' placeholder={this.state.collection.name} defaultValue={this.state.collection.name} value={this.state.value} ref='name' onChange={() => this.handleChange}/>
-          <input type='submit'/>
+          <input type='text' placeholder={this.state.collection.name} defaultValue={this.state.collection.name} ref='name' onChange={() => this.handleChange()}/>
         </form>
+        <button onClick={() => this.handleSave()}> Save </button>
       </div>
     )
 }

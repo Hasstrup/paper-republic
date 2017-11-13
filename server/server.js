@@ -17,6 +17,7 @@ mongoose.connect("mongodb://localhost/artsy", {
 });
 
 
+
 var postRoute = require('./routes/post')
 var collectionRoute = require('./routes/collection')
 
