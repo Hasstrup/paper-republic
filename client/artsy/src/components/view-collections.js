@@ -26,7 +26,7 @@ render() {
     var collections = this.state.collections.map(collection => {
       return (
         <div className='col-md-3'>
-      <div class="card" style={{'width': 12 + 'rem'}} onClick={() => this.handleClick(collection._id)}>
+      <div class="card" style={{'width': 12 + 'rem'}} id='home-photos' onClick={() => this.handleClick(collection._id)}>
         <div class="card-body">
           <h4 class="card-text"> {collection.name} </h4>
         </div>
@@ -35,7 +35,7 @@ render() {
     )})
 
   return (
-    <div className='row'>
+    <div className='row' id='collections-grid'>
       {collections}
     </div>
   )

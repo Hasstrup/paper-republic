@@ -10,8 +10,10 @@ class App extends Component {
     return (
       <div>
         <Nav/>
+        <div id="main">
+          <Main />
+        </div>
 
-        <Main/>
 
       </div>
 
