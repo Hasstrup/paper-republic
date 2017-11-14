@@ -27,6 +27,19 @@
   to { transform: rotate(360deg); }
 }
 
+@keyframes logo-fade-in {
+  0% {opacity: 0.2}
+  25% {opacity: 0.4}
+  50% {opacity: 0.6}
+  75% {opacity: 0.8}
+  100% {opacity: 1.0}
+}
+
+@keyframes fade-in {
+  0% {opacity: 0.2}
+  100% {opacity: 1.0}
+}
+
 .sidenav {
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
@@ -83,7 +96,11 @@
   color: white;
   font-size: 80px;
   margin-top: -150px;
-  margin-left: -500px
+  margin-left: -500px;
+  animation-name: logo-fade-in;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  font-family: 'Martel Sans', sans-serif;
 }
 
 #display {
@@ -525,4 +542,7 @@ margin-left: 20px;
 
 body {
   background-color: black;
+  animation-name: fade-in;
+  animation-duration: 2s;
+  animation-timing-function: linear; 
 }
