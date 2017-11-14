@@ -140,6 +140,16 @@
      border: 1px solid green
 }
 
+#some-imagex{
+    position: relative;
+     width: 100%;
+     height: 100% !important;
+     z-index: 1;
+     border: 1px solid green
+}
+
+
+
 #overlay {
   position: absolute;
   background: black;
@@ -148,6 +158,22 @@
   width: 100%;
   height: 100%;
 
+}
+.box {
+  padding: 0 50px 150px 0 !important;
+
+}
+
+#image {
+  width: 100%;
+  height: 350px;
+  border: 1px solid green
+}
+
+.containerxx {
+ width: 90%;
+ margin-left: 70px;
+ margin-top: 80px;
 }
 
 #coll {
@@ -160,6 +186,49 @@
    cursor: pointer;
 }
 
+.show-post {
+  color: white;
+  margin-left: 140px;
+  margin-top: 50px
+}
+
+.another {
+margin-left: 20px;
+border-left: 1px solid #48C9B0;
+padding-left: 30px
+
+}
+
+input {
+  border: 1px solid #48C9B0 !important;
+  border-radius: 2px !important;
+  background-color: black !important;
+  color: white !important;
+  margin: 20px 0 0 0  !important;
+  padding: 12px 20px !important;
+  width: 70% !important;
+}
+
+#another-textt {
+  margin-left: 90px
+}
+
+.edit-form {
+  color: white;
+}
+
+#separator {
+  height: 3px;
+  width: 170px;
+  background-color: green;
+  margin-left: -1px
+}
+
+#floating-left {
+  float: right;
+  margin-top: -30px
+}
+
 #collections-grid {
   margin: 10em 0 0 5em;
   width: 1500px;
@@ -169,6 +238,38 @@
 #collection-grid {
   margin-left: 10em
 }
+
+.collection-gridx {
+  margin-left: 10px;
+  color: white;
+}
+
+#button2{
+  text-decoration: underline;
+}
+
+#button2:hover {
+  cursor: pointer;
+  color: #48C9B0
+}
+#button1{
+  text-decoration: underline;
+}
+
+#button1:hover {
+  cursor: pointer;
+  color: #48C9B0
+}
+
+#button-stack {
+  margin-top: 50px
+}
+
+#label {
+  color: #48C9B0
+}
+
+#
 
 #displayed-text {
   color:white

@@ -32,24 +32,24 @@ class ShowPost extends Component {
 
 render() {
   return(
-    <div>
+    <div className='show-post'>
       <hr/>
      <div className='row'>
       <div className='col md-8'>
-        <img className='img-fluid img-thumbnail' src={this.state.content.link}/>
+        <img className='img-fluid' src={this.state.content.link}/>
       </div>
 
       <div className='col md-4'>
-        <div class="card" style={{width: 15 + 'rem'}}>
-        <ul class="list-group list-group-flush">
-        <li class="list-group-item"> <strong> Source </strong></li>
-        <li class="list-group-item"> {this.state.creator.name}</li>
-          <li class="list-group-item"> <strong> Category </strong></li>
-          <li class="list-group-item"> {this.state.collection.name}</li>
-        <li class="list-group-item" onClick={this.handleDelete}> Delete </li>
-        <li class="list-group-item" onClick={() => this.handleEdit(this.state.id)}> Change Collection </li>
-      </ul>
-     </div>
+        <div className='container another'>
+        <p id='label' > <strong> Source: </strong></p>
+        <p id='value'> <i>{this.state.creator.name}</i></p>
+          <p id='label'> <strong> Category: </strong></p>
+          <p id='value'> {this.state.collection.name}</p>
+          <div id='button-stack'>
+            <p id='button1' onClick={this.handleDelete}> Delete Post </p>
+            <p id='button2' onClick={() => this.handleEdit(this.state.id)}> Change Collection </p>
+          </div>
+        </div>
       </div>
     </div>
     </div>

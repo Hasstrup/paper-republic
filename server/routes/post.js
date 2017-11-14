@@ -16,7 +16,14 @@ Router.get('/post/new', function(req, res){
         if(err) {
           console.log('oops another error here' + err)
         } else {
-          res.json({collections: collections})
+          Post.find({}, function(err, posts){
+            if(err) {
+              console.log(err)
+            } else {
+              res.json({collections: collections, posts:posts})
+            }
+          })
+
     }})})
 
 Router.get('/post/:id', function(req, res){

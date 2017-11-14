@@ -7,13 +7,14 @@ class NewPost extends Component {
     this.state = {
       collections:[],
       selectedoption: '',
-      selected_name: ''
+      selected_name: '',
+      posts: []
     }}
 
 componentDidMount() {
       axios.get('http://localhost:4400/post/new')
       .then(response => {
-        this.setState({ collections: response.data.collections})
+        this.setState({ collections: response.data.collections, posts: response.data.posts})
       })}
 
 handleClick = (id, name) => {
@@ -45,16 +46,28 @@ handleSubmit = (e) => {
     if(this.state.collections.length !== 0)
       {
         collectiongrid = this.state.collections.map(collection => {
-          return (
-             <div className='col-md-6'>
-               <div class="card" style={{width: 15 + 'rem'}} onClick={() => this.handleClick(collection._id, collection.name)}>
-                 <div class="card-body">
-                   <h4 class="card-text"> {collection.name} </h4>
-                 </div>
-               </div>
-             </div>
-
-          )})}
+            if(collection.posts.length > 0) {
+            var random = collection.posts[Math.floor(Math.random()*collection.posts.length)]
+            var display_photo = this.state.posts.find(post => post._id === random._id)
+            return (
+              <div className='col-md-3' >
+                  <div id='overlay' onClick={() => this.handleClick(collection._id, collection.name)}></div>
+                  <img src={display_photo.link}  id='some-image'/>
+                  <div className='centered'>
+                    <p> {collection.name} </p>
+                    </div>
+            </div>
+          )}
+          else {
+            return(
+              <div className='col-md-3' id='coll'>
+                  <div id='overlay' onClick={() => this.handleClick(collection._id, collection.name)}></div>
+                  <img src='https://78.media.tumblr.com/dc2f83f9aa754058be480bf3114c38a5/tumblr_o4p4kuIqkY1qf2dg2o1_500.gif'  id='some-image'/>
+                  <div className='centered'>
+                    <h3> {collection.name} </h3>
+                    </div>
+            </div>
+        )}})}
 
 else
         {
@@ -64,22 +77,32 @@ else
      var form = (
        <div>
         <form onSubmit={() => this.handleSubmit}>
-          <input placeholder='Post link' ref='link'/>
-          <input placeholder=" Creator's name " ref='creatorname'/>
-          <input placeholder=" Creator's link " ref='creatorlink'/>
+          <div className='form-group'>
+            <input className='form-control' placeholder='Post link' ref='link'/>
+          </div>
+          <div className='form-group'>
+            <input className='form-control' placeholder=" Creator's name " ref='creatorname'/>
+          </div>
+          <div className='form-group'>
+
+            <input className='form-control' placeholder=" Creator's link " ref='creatorlink'/>
+          </div>
         </form>
-        <button onClick={this.handleSubmit.bind(this)}> Save </button>
-        <label> Collection </label>
-        <h6>  {this.state.selected_name}   </h6>
+        <p id='button1' onClick={this.handleSubmit.bind(this)}> Save </p>
+        <label>Selected Collection: </label>
+        <div>
+          <h6> <strong> {this.state.selected_name} </strong></h6>
+        </div>
         </div> )
 
   return (
-      <div>
+      <div className='edit-form'>
+        <h3> Create a new form </h3>
         <div className='row'>
-          <div className='col-md-7'>
+          <div className='col-md-6'>
             {form}
           </div>
-          <div className='col-md-5'>
+          <div className='col-md-6'>
             <div className='row'>
               {collectiongrid}
             </div>
