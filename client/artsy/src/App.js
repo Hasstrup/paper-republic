@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import Main from './components/main'
 import Nav from './components/navbar'
+import Footer from './components/footer'
 
 import './App.css';
 
@@ -13,6 +14,7 @@ class App extends Component {
         <div id="main">
           <Main />
         </div>
+        <Footer/>
 
 
       </div>

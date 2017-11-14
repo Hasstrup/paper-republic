@@ -36,12 +36,12 @@ handleSave = (e) => {
 
 render() {
     return (
-      <div>
-        <h5> Edit {this.state.collection.name}</h5>
+      <div className ='container' id='collection-edit'>
+        <h5> Please enter a new name for <span id='bro'> {this.state.collection.name} </span> </h5>
         <form onSubmit={() => this.handleSubmit}>
-          <input type='text' placeholder={this.state.collection.name} defaultValue={this.state.collection.name} ref='name' onChange={() => this.handleChange()}/>
+          <input type='text' id='select-formx' placeholder={this.state.collection.name} defaultValue={this.state.collection.name} ref='name' onChange={() => this.handleChange()}/>
         </form>
-        <button onClick={() => this.handleSave()}> Save </button>
+        <p className='funny-button' id='button1' onClick={() => this.handleSave()}> Save </p>
       </div>
     )
 }

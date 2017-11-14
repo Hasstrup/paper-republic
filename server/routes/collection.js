@@ -129,10 +129,6 @@ Router.put('/collection/:id', function(req, res){
               post.collectionn.name = req.body.name
               post.collectionn.id = req.params.id
               post.save()
-              if (collection.posts.indexOf(post._id) === -1){
-                collection.posts.push(post)
-                collection.save()
-              } else { return null }
             }})})
             res.json({})}
       else {

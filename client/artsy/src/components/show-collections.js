@@ -34,7 +34,7 @@ handleDelete = () => {
      displaying_content =this.state.collection_posts.map(post => {
       return (
         <div className='col-md-4 box' >
-            <img src={post.link}  id='image'/>
+            <img src={post.link} onCLick={() => this.handleClick(post._id)} id='image'/>
       </div>
       )})}
       else {
@@ -51,12 +51,12 @@ handleDelete = () => {
       <div>
         <div id='another-textt'>
           <h3> {this.state.collection.name} </h3>
-          <hr id='separator'/> 
+          <hr id='separator'/>
           <h6> {this.state.collection.posts ? this.state.collection.posts.length : 'Sorry! No'} posts {'in this collection'}</h6>
         </div>
         <div id='floating-left'>
-          <a onClick={() => this.handleDelete()}> Delete Collection </a>
-          <a href={`/editcollections/${this.state.id}`}> edit collection </a>
+          <a id='button1' className='button-22' onClick={() => this.handleDelete()}> Delete Collection </a>
+          <a id='button2' className='button-23' href={`/editcollections/${this.state.id}`}> edit collection </a>
         </div>
 
       </div>
