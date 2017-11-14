@@ -14,8 +14,7 @@ class Footer extends Component {
     </svg>
     </a>
       </div>
-     )
-  }
+     )}
 
 }
 
