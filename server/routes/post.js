@@ -82,8 +82,13 @@ Router.get('/post/:id/edit', function(req, res){
               if(err) {
                 console.log(err)
               } else {
-                  res.json({post:post, collections:collections})
-}})}})})
+                Post.find({}, function(err, posts){
+                  if(err){
+                    console.log(err)
+                  } else {
+                    res.json({post:post, collections:collections, posts:posts})
+                  }
+                })}})}})})
 
 
 //I'm editing the edit route to allow us only change the collection of the post

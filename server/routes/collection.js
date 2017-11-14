@@ -122,12 +122,12 @@ Router.put('/collection/:id', function(req, res){
       console.log('i was here')
       if(collection.posts.length !== 0) {
         collection.posts.forEach(function(post){
-          Posts.findById(post.id, function(err, post){
+          Post.findById(post._id, function(err, post){
             if(err){
               console.log(err)
             } else {
-              post.collectionn.name = collection.name
-              post.collectionn.id = collection._id
+              post.collectionn.name = req.body.name
+              post.collectionn.id = req.params.id
               post.save()
               if (collection.posts.indexOf(post._id) === -1){
                 collection.posts.push(post)

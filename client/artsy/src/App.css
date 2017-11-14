@@ -54,10 +54,13 @@
   cursor: pointer;
 }
 
+#coding {
+
+}
+
 #photos-grid {
   margin: 10rem 0 -5rem 0;
   margin-left: 5em;
-
 }
 
 #horizontal {
@@ -140,6 +143,59 @@
      border: 1px solid green
 }
 
+#collector {
+
+  margin-top: -40px;
+  margin-bottom: 30px;
+  margin-left: -5px
+}
+
+.hea-der {
+  margin-bottom: 70px;
+  margin-left: 10px
+}
+
+#select-form {
+  width: 20% !important;
+  margin-top: 5px !important
+}
+
+#c {
+margin-top: 40px;
+}
+
+.collection-extra {
+  margin-left: 10px
+}
+
+.new-collection {
+  margin-left: 70px !important
+}
+
+.funny-guy {
+  margin-left:800px;
+  margin-top: -100px;
+}
+
+.post-select-grid {
+  margin-top: 80px;
+  color: white;
+  margin-left: 20px
+  }
+
+  #vertical {
+    color: black
+  }
+
+.collumn {
+  margin-top: 40px !important;
+}
+
+.horizontal {
+  width: 100rem !important;
+  margin-left: -30px !important;
+}
+
 #some-imagex{
     position: relative;
      width: 100%;
@@ -181,15 +237,51 @@
   margin-bottom: 5px;
 }
 
+#text-101 {
+  margin-bottom: -100px;
+}
 #overlay:hover {
    opacity: 0.9;
    cursor: pointer;
 }
 
+.form-control {
+  margin-bottom: 40px !important;
+  margin-top: -3px !important;
+}
+
+#some-texxxxt {
+  color: #EC7063;
+  font-size: 16px;
+}
+
+#congratulations {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  border: 2px solid #EC7063;
+
+}
+
+#connn {
+  width: 320px;
+  margin-left: 100px;
+}
+#connn > p {
+  float: right;
+  margin-top: 30px;
+  margin-left: 2px;
+}
+
+
 .show-post {
   color: white;
   margin-left: 140px;
   margin-top: 50px
+}
+
+#selected-collection {
+  color: green;
 }
 
 .another {
@@ -199,14 +291,18 @@ padding-left: 30px
 
 }
 
+.row-guy {
+  margin-top: 60px;
+}
+
 input {
-  border: 1px solid #48C9B0 !important;
-  border-radius: 2px !important;
+  border: 1px solid green !important;
+  border-radius: 4px !important;
   background-color: black !important;
   color: white !important;
   margin: 20px 0 0 0  !important;
   padding: 12px 20px !important;
-  width: 70% !important;
+  width: 80% !important;
 }
 
 #another-textt {
@@ -217,11 +313,25 @@ input {
   color: white;
 }
 
+.coding {
+  color: white;
+  margin-left: 30px
+}
+
+.folding {
+  float: right;
+  margin-right: 200px
+}
+
 #separator {
   height: 3px;
   width: 170px;
   background-color: green;
   margin-left: -1px
+}
+
+.grid-5 {
+margin-left: -30px !important;
 }
 
 #floating-left {
@@ -232,11 +342,12 @@ input {
 #collections-grid {
   margin: 10em 0 0 5em;
   width: 1500px;
-  height: 50rem
+  height: 50rem;
 }
 
 #collection-grid {
-  margin-left: 10em
+  margin-left: 10em;
+  height: 100%;
 }
 
 .collection-gridx {
@@ -246,6 +357,9 @@ input {
 
 #button2{
   text-decoration: underline;
+}
+.coding {
+margin-top: 40px;
 }
 
 #button2:hover {
@@ -269,7 +383,9 @@ input {
   color: #48C9B0
 }
 
-#
+.new-collection {
+  color: white;
+}
 
 #displayed-text {
   color:white

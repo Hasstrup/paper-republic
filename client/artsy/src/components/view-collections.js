@@ -29,7 +29,7 @@ render() {
       var random = collection.posts[Math.floor(Math.random()*collection.posts.length)]
       var display_photo = this.state.posts.find(post => post._id === random._id)
       return (
-        <div className='col-md-3' >
+        <div className='col-md-3' id='coll'>
             <div id='overlay' onClick={() => this.handleClick(collection._id)}></div>
             <img src={display_photo.link}  id='some-image'/>
             <div className='centered'>
@@ -51,7 +51,8 @@ render() {
   return (
     <div>
     <div id='collection-grid'>
-      <h1 id='displayed-text'>  Collection </h1>
+      <h1 id='displayed-text'>  Collections </h1>
+      <hr id='separator'/>
       </div>
     <div className='row' id='collections-grid'>
       {collections}

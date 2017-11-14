@@ -47,6 +47,10 @@ handleSubmit = () => {
   })
 }
 
+handleClickx = (id) => {
+  this.props.history.push(`${id}`)
+}
+
 
 render() {
   let postgrid;
@@ -55,50 +59,64 @@ render() {
     if(this.state.posts.length !== 0){
       postgrid = this.state.posts.map(post => {
         return (
-        <div className='col-md-4'>
-            <img className='img-fluid img-thumbnail' onClick={() => this.handleClick(post._id, post.link)} src={post.link}/>
-          </div>
+          <div className='col-md-1' id='display-photos'>
+            <div id='overlay' onClick={() => this.handleClick(post._id, post.link)}></div>
+              <img className='img-fluid img-responsive' id='display'  src={post.link}/>
+            </div>
       )})
       selectedposts = this.state.selectedimages.map(link => {
         return(
-          <div className='col-md-2'>
-            <img className='img-fluid img-thumbnail' src={link}/>
-          </div>
+          <div className='col-md-1' id='display-photos'>
+              <img className='img-fluid img-responsive' id='display' onClick={() => this.handleClickx(link)} src={link}/>
+            </div>
         )})
 
 
     } else {
       postgrid =  (<h5> Hey Man, There are currently no uncategorized posts,
-         <br/> but you can still create one and push posts later </h5>)
+      but you can still create one and push posts later </h5>)
       selectedposts = null;
     }
 
     return (
-      <div>
-        <h6> Create a {'new'} collection </h6>
+      <div className='collection-extra'>
+      <div className='new-collection'>
+        <div className='hea-der'>
+          <h3> Create a {'new'} collection </h3>
+          <hr id='separator'/>
+        </div>
+
         <div>
           <form onSubmit={this.handleSubmit}>
-            <label> Collection Name </label>
-            <input type='text' ref='name' />
-            <input type='submit'/>
+            <div className='form-group form-stuff'>
+              <label> Collection Name </label>
+              <input className='form-control' type='text' ref='name' id='select-form'/>
+            </div>
+
           </form>
+          <p className='funny-guy' id='button1' onClick={() => this.handleSubmit()}> Save </p>
         </div>
 
         <hr/>
-
-      <div>
-          <h6> {this.state.posts.length !== 0 ? 'You selected these' : null}</h6>
-          <div className='row'>
-            {selectedposts}
+          <div className='post-select-grid'>
+            <h6> You've selected: {this.state.selectedposts.length} </h6>
+            <hr id='horizontal' className='horizontal'/>
+            <div className='conn' id='c'>
+            <div className='row customized-grid'>
+              {selectedposts}
+            </div>
+            </div>
           </div>
-        </div>
-
+      </div>
         <hr/>
 
-          <div>
+          <div className='post-select-grid'>
             <h6> {this.state.posts.length !== 0 ? 'Add some posts to your new collection' : null}</h6>
-            <div className='row'>
+            <hr id='horizontal' className='horizontal'/>
+            <div className='conn' id='c'>
+            <div className='row customized-grid'>
               {postgrid}
+            </div>
             </div>
           </div>
       </div>

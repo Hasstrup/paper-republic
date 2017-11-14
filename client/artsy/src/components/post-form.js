@@ -60,11 +60,11 @@ handleSubmit = (e) => {
           )}
           else {
             return(
-              <div className='col-md-3' id='coll'>
+              <div className='col-md-4' id='coll'>
                   <div id='overlay' onClick={() => this.handleClick(collection._id, collection.name)}></div>
                   <img src='https://78.media.tumblr.com/dc2f83f9aa754058be480bf3114c38a5/tumblr_o4p4kuIqkY1qf2dg2o1_500.gif'  id='some-image'/>
                   <div className='centered'>
-                    <h3> {collection.name} </h3>
+                    <p> {collection.name} </p>
                     </div>
             </div>
         )}})}
@@ -78,31 +78,36 @@ else
        <div>
         <form onSubmit={() => this.handleSubmit}>
           <div className='form-group'>
-            <input className='form-control' placeholder='Post link' ref='link'/>
+            <label> Link/Url </label>
+            <input className='form-control' ref='link'/>
           </div>
           <div className='form-group'>
-            <input className='form-control' placeholder=" Creator's name " ref='creatorname'/>
+            <label> Creator's name </label>
+            <input className='form-control' ref='creatorname'/>
           </div>
           <div className='form-group'>
-
-            <input className='form-control' placeholder=" Creator's link " ref='creatorlink'/>
+            <label> Creator's url </label>
+            <input className='form-control' ref='creatorlink'/>
           </div>
         </form>
         <p id='button1' onClick={this.handleSubmit.bind(this)}> Save </p>
         <label>Selected Collection: </label>
         <div>
-          <h6> <strong> {this.state.selected_name} </strong></h6>
+          <h6 id='selected-collection'> <strong> {this.state.selected_name} </strong></h6>
         </div>
         </div> )
 
   return (
-      <div className='edit-form'>
-        <h3> Create a new form </h3>
-        <div className='row'>
+      <div className='container edit-form'>
+        <h3> Create a new post </h3>
+        <hr id='separator'/>
+
+        <div className='row row-guy '>
           <div className='col-md-6'>
             {form}
           </div>
-          <div className='col-md-6'>
+          <div className='col-md-6 collumn'>
+            <h6 id='collector'> Please select a collection </h6>
             <div className='row'>
               {collectiongrid}
             </div>
