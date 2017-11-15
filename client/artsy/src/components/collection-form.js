@@ -43,7 +43,7 @@ handleSubmit = () => {
     url: 'http://localhost:4400/collection',
     data: newcollection
   }).then(response => {
-    this.props.history.push('/collections')
+    this.props.history.replace('/collections')
   })
 }
 

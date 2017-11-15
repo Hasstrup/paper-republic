@@ -34,7 +34,7 @@ handleDelete = () => {
      displaying_content =this.state.collection_posts.map(post => {
       return (
         <div className='col-md-4 box' >
-            <img src={post.link} onCLick={() => this.handleClick(post._id)} id='image'/>
+            <img src={post.link} onClick={() => this.handleClick(post._id)} id='image'/>
       </div>
       )})}
       else {

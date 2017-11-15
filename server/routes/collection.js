@@ -97,7 +97,9 @@ Router.post('/collection', function(req, res){
                   post.save()
                   collection.save();
                 }})
-            }})})}
+            }})})
+            res.json({})
+          }
             else
             {
               collection.posts = [];
