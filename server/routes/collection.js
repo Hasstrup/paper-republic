@@ -129,7 +129,7 @@ Router.put('/collection/:id', function(req, res){
               console.log(err)
             } else {
               post.collectionn.name = req.body.name
-              post.collectionn.id = req.params.id
+              post.collectionn.id = collection._id
               post.save()
             }})})
             res.json({})}

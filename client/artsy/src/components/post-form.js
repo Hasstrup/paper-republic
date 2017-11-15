@@ -50,7 +50,7 @@ handleSubmit = (e) => {
             var random = collection.posts[Math.floor(Math.random()*collection.posts.length)]
             var display_photo = this.state.posts.find(post => post._id === random._id)
             return (
-              <div className='col-md-3' >
+              <div className='col-md-3' id='coll' >
                   <div id='overlay' onClick={() => this.handleClick(collection._id, collection.name)}></div>
                   <img src={display_photo.link}  id='some-image'/>
                   <div className='centered'>
@@ -60,7 +60,7 @@ handleSubmit = (e) => {
           )}
           else {
             return(
-              <div className='col-md-4' id='coll'>
+              <div className='col-md-3' id='coll'>
                   <div id='overlay' onClick={() => this.handleClick(collection._id, collection.name)}></div>
                   <img src='https://78.media.tumblr.com/dc2f83f9aa754058be480bf3114c38a5/tumblr_o4p4kuIqkY1qf2dg2o1_500.gif'  id='some-image'/>
                   <div className='centered'>
