@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Wrapper from './wrapper';
 import {BrowserRouter} from 'react-router-dom'
+import Autho from './components/Autho'
 import registerServiceWorker from './registerServiceWorker';
+
 
 ReactDOM.render(
       <BrowserRouter >
-        <App />
+        <Wrapper/>
         </BrowserRouter>,
 
 document.getElementById('root'));

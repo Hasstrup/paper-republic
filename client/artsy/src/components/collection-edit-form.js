@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+
 class CollectionEditForm extends Component {
   constructor(props){
     super(props)
@@ -9,6 +10,28 @@ class CollectionEditForm extends Component {
       collection: {},
       value: ''
     }}
+
+    componentWillMount(){
+    this.readCookie('authtoken')
+          }
+
+          readCookie = (cname) => {
+                   var name = cname + "=";
+                   var decodedCookie = decodeURIComponent(document.cookie);
+                   var ca = decodedCookie.split(';');
+                   for(var i = 0; i <ca.length; i++) {
+                       var c = ca[i];
+                       while (c.charAt(0) == ' ') {
+                           c = c.substring(1);
+                       }
+                       if (c.indexOf(name) == 0 && c.substring(name.length, c.length) == '699169199169' ) {
+                           return
+                       } else {
+                         this.props.history.push('/autho')
+                       }
+                   }
+                   return "";
+               }
 
 componentDidMount(){
   axios.get(`http://localhost:4400/collection/${this.state.id}/edit`)

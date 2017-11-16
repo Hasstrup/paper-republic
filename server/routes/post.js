@@ -22,9 +22,7 @@ Router.get('/post/new', function(req, res){
             } else {
               res.json({collections: collections, posts:posts})
             }
-          })
-
-    }})})
+          })}})})
 
 Router.get('/post/:id', function(req, res){
   Post.findById(req.params.id, function(err, post){

@@ -1,12 +1,35 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+
 class ViewPost extends Component {
     constructor(props){
       super(props);
       this.state = {
       content: []
       }}
+
+componentWillMount(){
+this.readCookie('authtoken')
+      }
+
+ readCookie = (cname) => {
+          var name = cname + "=";
+          var decodedCookie = decodeURIComponent(document.cookie);
+          var ca = decodedCookie.split(';');
+          for(var i = 0; i <ca.length; i++) {
+              var c = ca[i];
+              while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+              }
+              if (c.indexOf(name) == 0 && c.substring(name.length, c.length) == '699169199169' ) {
+                  return
+              } else {
+                this.props.history.push('/autho')
+              }
+          }
+          return "";
+      }
 
  componentDidMount() {
   axios.get('http://localhost:4400/posts')
@@ -30,7 +53,7 @@ render() {
 
   return  (
               <div>
-                <div className id='containerr'>
+                <div  id='containerr'>
                   <div>
                     <h1 id='welcome-text'> Hello muchachos </h1>
                     <hr id='separator' className='occ'/>

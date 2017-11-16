@@ -76,7 +76,7 @@ handleClick = ()=> {
         </svg>
 
     </span>
-    <a href='/posts' id='bruh'> Paper-Republic </a>
+    <a href='/posts' id='bruh'> Paper-Stack </a>
 
       </div>
 

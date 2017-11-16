@@ -7,6 +7,8 @@ import NewCollectionForm from './collection-form'
 import CollectionEditForm from './collection-edit-form'
 import EditPostForm from './edit-post-form'
 import Landing from './landing'
+import Autho from './Autho'
+import App from '../App';
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
@@ -15,12 +17,13 @@ const Main = () => {
   return (
     <main>
         <Switch>
-          <Route  exact path = '/' component={Landing} />
+          <Route  exact path = '/' component={ViewPost} />
           <Route  exact path = '/posts' component={ViewPost}/>
           <Route  exact path = '/collections' component={viewCollections}/>
           <Route  exact path = '/posts/:id' component={ShowPost}/>
           <Route  exact path = '/collections/:id' component={ShowCollection}/>
           <Route  exact path = '/newposts/' component={NewPost} />
+          <Route  exact path = '/autho' component={Autho} />
           <Route  exact path = '/newcollections' component={NewCollectionForm}/>
           <Route  exact path = '/editcollections/:id' component={CollectionEditForm}/>
           <Route  exact path = '/editposts/:id/' component={EditPostForm}/>
