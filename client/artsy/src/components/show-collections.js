@@ -33,7 +33,7 @@ class ShowCollection extends Component {
                }
 
   componentDidMount() {
-    axios.get(`http://localhost:4400/collection/${this.state.id}`)
+    axios.get(`https://hgognavtnecinv44.herokuapp.com/collection/${this.state.id}`)
     .then( response => {
      this.setState({
      collection: response.data.collections, collection_posts: response.data.postarray
@@ -44,7 +44,7 @@ handleClick = (id) => {
 }
 
 handleDelete = () => {
-  axios.delete(`http://localhost:4400/collection/${this.state.id}`)
+  axios.delete(`https://hgognavtnecinv44.herokuapp.com/collection/${this.state.id}`)
   .then(response => {
     this.props.history.push('/collections')
   })
@@ -77,7 +77,7 @@ handleDelete = () => {
           <h6> {this.state.collection.posts ? this.state.collection.posts.length : 'Sorry! No'} posts {'in this collection'}</h6>
         </div>
         <div id='floating-left'>
-          <a id='button1' className='button-22' onClick={() => this.handleDelete()}> Delete Collection </a>
+          <a id='button1' className='button-22' onClick={() => this.handleDelete}> Delete Collection </a>
           <a id='button2' className='button-23' href={`/editcollections/${this.state.id}`}> edit collection </a>
         </div>
 

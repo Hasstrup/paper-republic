@@ -11,33 +11,34 @@ class NewCollectionForm extends Component {
      }
    }
 
+
+   componentWillMount(){
+   this.readCookie('authtoken')
+         }
+
+         readCookie = (cname) => {
+                  var name = cname + "=";
+                  var decodedCookie = decodeURIComponent(document.cookie);
+                  var ca = decodedCookie.split(';');
+                  for(var i = 0; i <ca.length; i++) {
+                      var c = ca[i];
+                      while (c.charAt(0) == ' ') {
+                          c = c.substring(1);
+                      }
+                      if (c.indexOf(name) == 0 && c.substring(name.length, c.length) == '699169199169' ) {
+                          return
+                      } else {
+                        this.props.history.push('/autho')
+                      }
+                  }
+                  return "";
+              }
+
 componentDidMount(){
-     axios.get('http://localhost:4400/collection/new')
+     axios.get('http://hgognavtnecinv44.herokuapp.com/collection/new')
      .then(response => {
        this.setState({ posts: response.data.postarray })
      })}
-
-     componentWillMount(){
-     this.readCookie('authtoken')
-           }
-
-           readCookie = (cname) => {
-                    var name = cname + "=";
-                    var decodedCookie = decodeURIComponent(document.cookie);
-                    var ca = decodedCookie.split(';');
-                    for(var i = 0; i <ca.length; i++) {
-                        var c = ca[i];
-                        while (c.charAt(0) == ' ') {
-                            c = c.substring(1);
-                        }
-                        if (c.indexOf(name) == 0 && c.substring(name.length, c.length) == '699169199169' ) {
-                            return
-                        } else {
-                          this.props.history.push('/autho')
-                        }
-                    }
-                    return "";
-                }
 
 
 
@@ -59,10 +60,10 @@ handleClick = (id, link) => {
 
 
 handleSubmit = () => {
-  var newcollection = { name: this.refs.name.value, posts: this.state.selectedposts }
+  var newcollection = { name: this.refs.name.value.toLowerCase(), posts: this.state.selectedposts, isTopLevel: 'false' }
   axios.request({
     method: 'POST',
-    url: 'http://localhost:4400/collection',
+    url: 'http://hgognavtnecinv44.herokuapp.com/collection',
     data: newcollection
   }).then(response => {
     this.props.history.replace('/collections')

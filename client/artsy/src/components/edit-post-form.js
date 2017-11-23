@@ -39,7 +39,7 @@ class EditPostForm extends Component {
                }
 
 componentDidMount(){
-     axios.get(`http://localhost:4400/post/${this.state.id}/edit`)
+     axios.get(`https://hgognavtnecinv44.herokuapp.com/post/${this.state.id}/edit`)
      .then(response => {
        this.setState({ post: response.data.post, collections: response.data.collections,
          post_collection_id: response.data.post.collectionn.id, post_collection_name: response.data.post.collectionn.name, posts:response.data.posts
@@ -52,7 +52,7 @@ handleClick = (id, name) => {
 handleSave = (id) => {
   axios.request({
     method: 'put',
-    url: `http://localhost:4400/post/${this.state.id}`,
+    url: `https://hgognavtnecinv44.herokuapp.com/post/${this.state.id}`,
     data: {collection: this.state.post_collection_id}
   }).then( response => {
     this.props.history.push(`/collections/${this.state.post_collection_id}`)

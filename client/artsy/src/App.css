@@ -13,9 +13,30 @@
   padding: 20px;
   color: white;
 }
-
+.clicked {
+  border: 1px solid red;
+}
 .App-title {
   font-size: 1.5em;
+}
+
+#selectedclass {
+margin-top: 50px
+}
+
+/* The Close Button */
+#close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .App-intro {
@@ -148,7 +169,7 @@
   cursor: pointer;
 }
 #containerr {
-  margin-top: 12em;
+  margin-top: 15em;
   text-align: center;
   width: 100%
 }
@@ -159,17 +180,19 @@
 
 .centered {
      position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 35%;
+      left: 40%;
       transform: translate(-50%, -50%);
       color: white;
-      z-index: 3
+      z-index: 3;
+      font-size: 50px;
+
 }
 
 #some-image{
     position: relative;
-     width: 100%;
-     height: 100% !important;
+     width: 90%;
+     height: 90% !important;
      z-index: 1;
      border: 1px solid green
 }
@@ -247,7 +270,7 @@ margin-top: 40px;
 
 }
 .box {
-  padding: 0 50px 150px 0 !important;
+  padding: 0 50px 80px 0 !important;
 
 }
 
@@ -409,9 +432,14 @@ margin-left: -30px !important;
   height: 100%;
 }
 
+.grid-ting{
+  margin-top: 60px;
+  margin-left: 40px
+}
 .collection-gridx {
   margin-left: 10px;
   color: white;
+  margin-top: 40px;
 }
 
 #button2{
@@ -456,17 +484,133 @@ margin-left: 20px;
 #bruh {
   float: right;
   color: white;
-  margin-right: 30px;
+  margin-right: 50px;
   margin-top: 20px;
   text-decoration: none
 }
 
-#displayed-text {
-  color:white
+
+#bruh > a {
+  color: white;
+  float: right;
+  margin-left: 20px;
+  margin-top: -55px
 }
 
+#bruh > input {
+  margin-bottom: 40px !important;
+  margin-top: -3px !important;
+  width: 200px !important;
+  height: 40px;
+  border-color: white !important;
+
+}
+
+.clicked {
+  border-color: 2px solid #EC7063
+}
+
+#parent-name {
+  color: #1ABC9C
+}
+
+#title-man {
+  text-transform: capitalize;
+}
+
+#displayed-text {
+  color:white;
+}
+
+#displayed-textxx {
+  float: right;
+  font-size: 20px;
+  color: #CACFD2;
+  margin-bottom: 40px !important
+}
+
+.nest-more {
+  margin-top: 80px;
+  color: white
+}
+
+#search-box{
+  margin-bottom: 40px;
+  padding-bottom: 10px
+}
+
+#horizontalxx {
+  background-color: #1ABC9C;
+  margin-bottom: 2em;
+  opacity: 0.3;
+  width: 100px;
+  float: left;
+}
+
+#search-query{
+  font-size: 24px
+}
+
+
+.nest-morex {
+  margin-top: 80px;
+  color: white;
+  margin-left: 60px
+}
+#button2x {
+  margin-left: 15px;
+  color: #1ABC9C;
+  text-decoration: underline;
+}
+.nesst {
+  margin-top: 80px;
+}
+
+.centered {
+  text-transform: capitalize;
+}
+
+.nesstx {
+margin-bottom: 120px;
+margin-top: 80px;
+margin-right: 20px
+}
+
+#button2x:hover {
+  text-decoration: none;
+
+}
+.boo-yah {
+  margin-right: -80px !important
+}
+
+#displayed-textx {
+  color: white;
+  font-size: 24px;
+  margin-left: 50px;
+}
+
+#them-ones {
+  position: absolute;
+  color: white;
+  left: 43%;
+  margin-top: 30px
+}
+
+#them-ones:hover {
+  color: #EC7063 !important;
+  text-decoration: none !important;
+}
 .nav-stuff {
   margin-top: 50px !important;
+}
+
+.bigman {
+  display: block
+}
+
+#bossxx {
+  display: none;
 }
 
 #bruh:hover {
@@ -531,6 +675,14 @@ margin-left: 20px;
   width: 60% !important
 }
 
+#select-formxx {
+  width: 65% !important
+}
+
+#collection-editx {
+  margin: 0 auto;
+}
+
 #bro {
   color: #E74C3C;
 }
@@ -544,5 +696,5 @@ body {
   background-color: black;
   animation-name: fade-in;
   animation-duration: 2s;
-  animation-timing-function: linear; 
+  animation-timing-function: linear;
 }

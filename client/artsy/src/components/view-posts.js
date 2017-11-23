@@ -32,7 +32,7 @@ this.readCookie('authtoken')
       }
 
  componentDidMount() {
-  axios.get('http://localhost:4400/posts')
+  axios.get('https://hgognavtnecinv44.herokuapp.com/posts')
   .then( response => {
    this.setState({
    content: response.data.posts

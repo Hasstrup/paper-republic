@@ -36,7 +36,7 @@ readCookie = (cname) => {
 
 
 componentDidMount() {
-      axios.get('http://localhost:4400/post/new')
+      axios.get('https://hgognavtnecinv44.herokuapp.com/post/new')
       .then(response => {
         this.setState({ collections: response.data.collections, posts: response.data.posts})
       })}
@@ -52,11 +52,12 @@ handleSubmit = (e) => {
         link: this.refs.link.value,
         creatorname: this.refs.creatorname.value,
         creatorlink: this.refs.creatorlink.value,
-        collection: this.state.selectedoption
+        collection: this.state.selectedoption,
+        resolution: this.refs.resolution.value
       }
   axios.request({
     method: 'post',
-    url: 'http://localhost:4400/post',
+    url: 'https://hgognavtnecinv44.herokuapp.com/post',
     data: content
   }).then(response => {
     this.props.history.push('/posts')})
@@ -112,6 +113,14 @@ else
           <div className='form-group'>
             <label> Creator's url </label>
             <input className='form-control' ref='creatorlink'/>
+          </div>
+          <div className='form-group'>
+            <label> Resolution </label>
+            <input className='form-control' ref='resolution'/>
+          </div>
+          <div className='form-group'>
+            <label> Tags {'(please separate each one with a comma)'} </label>
+            <input className='form-control' ref='tags'/>
           </div>
         </form>
         <p id='button1' onClick={this.handleSubmit.bind(this)}> Save </p>

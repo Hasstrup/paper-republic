@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-
 class CollectionEditForm extends Component {
   constructor(props){
     super(props)
@@ -10,6 +9,7 @@ class CollectionEditForm extends Component {
       collection: {},
       value: ''
     }}
+
 
     componentWillMount(){
     this.readCookie('authtoken')
@@ -34,7 +34,7 @@ class CollectionEditForm extends Component {
                }
 
 componentDidMount(){
-  axios.get(`http://localhost:4400/collection/${this.state.id}/edit`)
+  axios.get(`http://hgognavtnecinv44.herokuapp.com/collection/${this.state.id}/edit`)
   .then(response => {
     this.setState({ collection: response.data.collection})
   })
@@ -50,8 +50,8 @@ handleSave = (e) => {
   } else {}
   axios.request({
     method: 'put',
-    url: `http://localhost:4400/collection/${this.state.id}`,
-    data: {name: this.state.value}
+    url: `http://hgognavtnecinv44.herokuapp.com/collection/${this.state.id}`,
+    data: {name: this.state.value.toLowerCase()}
   }).then(response => {
     this.props.history.push('/collections')
   })

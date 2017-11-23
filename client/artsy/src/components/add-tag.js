@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-class ShowPost extends Component {
+class AddTag extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -9,10 +9,8 @@ class ShowPost extends Component {
       content: {},
       collection: {},
       creator:{},
-      resolution: '',
-      title: ''
+      tags: []
     }}
-
 
     componentWillMount(){
     this.readCookie('authtoken')
@@ -40,27 +38,34 @@ class ShowPost extends Component {
     axios.get(`http://hgognavtnecinv44.herokuapp.com/post/${this.state.id}`)
     .then( response => {
      this.setState({
-     content: response.data.post, collection: response.data.post.collectionn, creator:response.data.post.creator, resolution: response.data.post.resolution,
-              title: response.data.post.title
+     content: response.data.post, collection: response.data.post.collectionn, creator:response.data.post.creator, tags: response.data.post.tags
        })})
   }
 
-  handleEdit = () => {
-    this.props.history.push(`/editposts/${this.state.id}`)
-  }
-
-  handleDelete = () => {
-    axios.delete(`http://localhost:4400/post/${this.state.id}`)
-    .then(response => {
-      this.props.history.push(`/collections/${this.state.collection.id}`)
-    })
-  }
-
-  handleAddTag = () => {
-    this.props.history.push(`/addtags/${this.state.id}`)
-  }
+  handleSubmit = () => {
+    var tags ={tags: this.refs.tags.value.toLowerCase().split(', ')}
+    axios.request({
+      url: `http://hgognavtnecinv44.herokuapp.com/addtag/${this.state.id}`,
+      method: 'post',
+      data: tags
+    }).then(response => {
+      this.props.history.push('/posts')
+    })}
 
 render() {
+  let currenttags
+    if(this.state.tags.length > 0) {
+
+    currenttags = this.state.tags.map(tag => {
+      return (
+        <span> {tag},  </span>
+      )
+    }) } else {
+      currenttags = (
+
+          <span> There are currently no tags {'in'} this post </span>
+        )}
+
   return(
     <div className='show-post'>
       <hr/>
@@ -71,18 +76,16 @@ render() {
 
       <div className='col md-4'>
         <div className='container another'>
-          <p id='label' > <strong> Title: </strong></p>
-          <p id='value'> <i> {this.state.title}</i></p>
-        <p id='label' > <strong> Source: </strong></p>
-        <p id='value'> <i>{this.state.creator.name}</i></p>
           <p id='label'> <strong> Category: </strong></p>
           <p id='value'> {this.state.collection.name}</p>
-            <p id='label'> <strong> Resolution </strong></p>
-            <p id='value'> {this.state.resolution}</p>
+          <p id='label' > <strong> Current tags  </strong></p>
+          <p id='value'> <i> {currenttags} </i></p>
+            <div className='form-group'>
+              <label> Please enter tags and remember to separate each one with a comma and space </label>
+              <input className='form-control' ref='tags'/>
+            </div>
           <div id='button-stack'>
-            <p id='button1' onClick={this.handleDelete}> Delete Post </p>
-            <p id='button2' onClick={() => this.handleEdit(this.state.id)}> Change Collection </p>
-            <p id='button2' onClick={() => this.handleAddTag(this.state.id)}> Add tags </p>
+            <p id='button2' onClick={() => this.handleSubmit()}> Add  </p>
           </div>
         </div>
       </div>
@@ -90,7 +93,6 @@ render() {
     </div>
   )
 }
-
 }
 
-export default ShowPost ;
+export default AddTag

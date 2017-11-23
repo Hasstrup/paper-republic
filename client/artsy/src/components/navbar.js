@@ -1,3 +1,4 @@
+import Modal from './modal'
 import React, { Component } from 'react'
 import axios from 'axios'
 
@@ -6,36 +7,36 @@ class Nav extends Component {
     super(props)
     this.state= {
         posts: [],
-        collections: []
-    }
-  }
+        collections: [],
+        clicker: 'no',
+        qt: ''
+
+    }}
 
   componentWillMount () {
-    axios.get('http://localhost:4400/collections')
+    axios.get('http://hgognavtnecinv44.herokuapp.com/collections')
     .then(response => {
       this.setState({ collections: response.data.collections, posts: response.data.postarray })
     })
     .catch(err => {
       console.log(err)
-    })
-  }
+    })}
 
    openNav = () => {
     document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px"
+    document.getElementById("main").style.marginLeft = "250px" }
 
-}
  closeNav = () => {
     document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-}
+    document.getElementById("main").style.marginLeft = "0"; };
 
-handleClick = ()=> {
-  this.props.history.push('/posts')
-}
 
 
   render () {
+
+    var modal = document.getElementById('myModal');
+    var btn = document.getElementsByClassName("myBtn");
+
     var reversedarray = this.state.collections.reverse();
     var recent = reversedarray.slice(0, 5).map(collection => {
       return (
@@ -60,7 +61,8 @@ handleClick = ()=> {
           <a id='text-guy' href="/posts"> Collections </a>
           </div>
         <a id='nav-listx' href="/collections"> view collections </a>
-        <a id='nav-listx' href="/newcollections"> new collection </a>
+        <a id='nav-listx' href='/newcollections'> new collection </a>
+        <a id='nav-listx' href='/newparent'> new parent </a>
         <hr id='horizontalmm'/>
         <a href="/newcollections"> Recent collections </a>
         {recent}
@@ -76,7 +78,11 @@ handleClick = ()=> {
         </svg>
 
     </span>
-    <a href='/posts' id='bruh'> Paper-Stack </a>
+    <a href='/posts' id='them-ones'> Paper-Stack </a>
+
+
+
+
 
       </div>
 
