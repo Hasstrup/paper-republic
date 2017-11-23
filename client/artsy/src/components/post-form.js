@@ -11,32 +11,8 @@ class NewPost extends Component {
       posts: []
     }}
 
-    componentWillMount(){
-    this.readCookie('authtoken')
-          }
-
-readCookie = (cname) => {
-                   var name = cname + "=";
-                   var decodedCookie = decodeURIComponent(document.cookie);
-                   var ca = decodedCookie.split(';');
-                   for(var i = 0; i <ca.length; i++) {
-                       var c = ca[i];
-                       while (c.charAt(0) == ' ') {
-                           c = c.substring(1);
-                       }
-                       if (c.indexOf(name) == 0 && c.substring(name.length, c.length) == '699169199169' ) {
-                           return
-                       } else {
-                         this.props.history.push('/autho')
-                       }
-                   }
-                   return "";
-               }
-
-
-
 componentDidMount() {
-      axios.get('https://hgognavtnecinv44.herokuapp.com/post/new')
+      axios.get('http://hgognavtnecinv44.herokuapp.com/post/new')
       .then(response => {
         this.setState({ collections: response.data.collections, posts: response.data.posts})
       })}
@@ -52,12 +28,14 @@ handleSubmit = (e) => {
         link: this.refs.link.value,
         creatorname: this.refs.creatorname.value,
         creatorlink: this.refs.creatorlink.value,
+        title: this.refs.title.value.toLowerCase(),
         collection: this.state.selectedoption,
-        resolution: this.refs.resolution.value
+        resolution: this.refs.resolution.value,
+        tags: this.refs.tags.value.toLowerCase().split(', ')
       }
   axios.request({
     method: 'post',
-    url: 'https://hgognavtnecinv44.herokuapp.com/post',
+    url: 'http://hgognavtnecinv44.herokuapp.com/post',
     data: content
   }).then(response => {
     this.props.history.push('/posts')})
@@ -103,6 +81,10 @@ else
        <div>
         <form onSubmit={() => this.handleSubmit}>
           <div className='form-group'>
+          <label> Title  </label>
+          <input className='form-control' ref='title'/>
+        </div>
+          <div className='form-group'>
             <label> Link/Url </label>
             <input className='form-control' ref='link'/>
           </div>
@@ -115,13 +97,14 @@ else
             <input className='form-control' ref='creatorlink'/>
           </div>
           <div className='form-group'>
-            <label> Resolution </label>
-            <input className='form-control' ref='resolution'/>
-          </div>
+          <label> Resolution  </label>
+          <input className='form-control' ref='resolution'/>
+        </div>
+
           <div className='form-group'>
-            <label> Tags {'(please separate each one with a comma)'} </label>
-            <input className='form-control' ref='tags'/>
-          </div>
+          <label> Tags <i> {'(please separate each one with a comma && a space please)'} </i> </label>
+          <input className='form-control' ref='tags'/>
+        </div>
         </form>
         <p id='button1' onClick={this.handleSubmit.bind(this)}> Save </p>
         <label>Selected Collection: </label>
